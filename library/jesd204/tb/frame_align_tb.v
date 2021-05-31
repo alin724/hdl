@@ -187,7 +187,6 @@ module frame_align_tb;
     align_err_f = 1'b0;
     align_err_mf = 1'b0;
     #100000;
-    $finish;
   end
 
   always @(posedge clk) begin

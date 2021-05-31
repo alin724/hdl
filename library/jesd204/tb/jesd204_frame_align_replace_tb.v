@@ -67,11 +67,6 @@ wire [DATA_PATH_WIDTH-1:0]    charisk_out;
 reg [31:00] ii;
 
 initial begin
-  #10000;
-  $finish;
-end
-
-initial begin
   forever begin
     for(ii = 0; ii < DATA_PATH_WIDTH; ii = ii + 1) begin
       eof[ii] = $urandom_range(cfg_octets_per_frame) == 0;

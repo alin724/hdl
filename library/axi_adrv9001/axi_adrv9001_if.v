@@ -137,6 +137,7 @@ module axi_adrv9001_if #(
 
   input             tx1_single_lane,
   input             tx1_sdr_ddr_n,
+  input     [1:0]   tx1_symb_2_8_16b,
 
   output            tx2_clk,
   input             tx2_rst,
@@ -145,7 +146,8 @@ module axi_adrv9001_if #(
   input     [15:0]  tx2_data_q,
 
   input             tx2_single_lane,
-  input             tx2_sdr_ddr_n
+  input             tx2_sdr_ddr_n,
+  input     [1:0]   tx2_symb_2_8_16b
 );
 
   // Tx has an extra lane to drive the clock
@@ -377,7 +379,8 @@ module axi_adrv9001_if #(
     .tx_data_i (tx1_data_i),
     .tx_data_q (tx1_data_q),
     .tx_sdr_ddr_n (tx1_sdr_ddr_n),
-    .tx_single_lane (tx1_single_lane)
+    .tx_single_lane (tx1_single_lane),
+    .tx_symb_2_8_16b (tx1_symb_2_8_16b)
   );
 
  adrv9001_tx #(
@@ -440,7 +443,8 @@ module axi_adrv9001_if #(
     .tx_data_i (tx2_data_i),
     .tx_data_q (tx2_data_q),
     .tx_sdr_ddr_n (tx2_sdr_ddr_n),
-    .tx_single_lane (tx2_single_lane)
+    .tx_single_lane (tx2_single_lane),
+    .tx_symb_2_8_16b (tx2_symb_2_8_16b)
   );
 
 endmodule

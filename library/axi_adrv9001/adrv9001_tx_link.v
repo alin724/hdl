@@ -58,7 +58,8 @@ module adrv9001_tx_link  #(
   // Config interface
   input          tx_sdr_ddr_n,
   input          tx_single_lane,
-  input   [1:0]  tx_symb_2_8_16b
+  input          tx_symb_b1,
+  input          tx_symb_b2
 );
 
   assign tx_clk = dac_clk_div;
@@ -183,8 +184,7 @@ module adrv9001_tx_link  #(
                        strobe8[5],strobe8[5],
                        strobe8[4],strobe8[4]};
 
-  assign dac_data_0 = tx_single_lane ? (tx_symb_2_8_16b[1] ? (tx_symb_2_8_16b[0] ? (tx_sdr_ddr_n ? data16_0 : data16_0) : (tx_sdr_ddr_n ? {data8_0,data8_1} : {data8_0,data8_1} )) 
-                            : (tx_symb_2_8_16b[0] ? (tx_sdr_ddr_n ? {data2_0,data2_1,data2_2,data2_3} : {data2_0,data2_1,data2_2,data2_3}) :
+  assign dac_data_0 = tx_single_lane ? (tx_symb_b1 ? (tx_symb_b2 ? data16_0 : {data8_0,data8_1}) : (tx_symb_b2 ? {data2_0,data2_1,data2_2,data2_3} :
 	                    (tx_sdr_ddr_n ? data32sdr : data32[31-:8]))) :
                             (CMOS_LVDS_N ? (tx_sdr_ddr_n ? data8sdr_0 : data8_0) : data16_0[15-:8]);
 
@@ -199,8 +199,7 @@ module adrv9001_tx_link  #(
   assign dac_data_3 = tx_single_lane ? 'b0 :
                            (CMOS_LVDS_N ? (tx_sdr_ddr_n ? data8sdr_3 : data8_3) :
                            1'b0);
-  assign dac_data_strobe = tx_single_lane ? (tx_symb_2_8_16b[1] ? (tx_symb_2_8_16b[0] ? (tx_sdr_ddr_n ? strobe16 : strobe16) : (tx_sdr_ddr_n ? {strobe8,strobe8} : {strobe8,strobe8} ))
-                           : (tx_symb_2_8_16b[0] ? (tx_sdr_ddr_n ? {strobe2,strobe2,strobe2,strobe2} : {strobe2,strobe2,strobe2,strobe2}) : 
+  assign dac_data_strobe = tx_single_lane ? (tx_symb_b1 ? (tx_symb_b2 ? strobe16 : {strobe8,strobe8}) : (tx_symb_b2 ? {strobe2,strobe2,strobe2,strobe2} :
 	                   (tx_sdr_ddr_n ? strobe32sdr : strobe32[31-:8]))) :
                            (CMOS_LVDS_N ? (tx_sdr_ddr_n ? strobe8sdr : strobe8) : strobe16[15-:8]);
   assign dac_data_clk = {4{1'b1,1'b0}};

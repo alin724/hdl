@@ -224,13 +224,15 @@ module axi_adrv9001 #(
   wire            tx1_data_valid;
   wire            tx1_single_lane;
   wire            tx1_sdr_ddr_n;
-  wire    [1:0]   tx1_symb_2_8_16b;
+  wire            tx1_symb_b1;
+  wire            tx1_symb_b2;
   wire    [15:0]  tx2_data_i;
   wire    [15:0]  tx2_data_q;
   wire            tx2_data_valid;
   wire            tx2_single_lane;
   wire            tx2_sdr_ddr_n;
-  wire    [1:0]   tx2_symb_2_8_16b;
+  wire            tx2_symb_b1;
+  wire            tx2_symb_b2;
 
   wire            adc_1_valid;
   wire            adc_2_valid;
@@ -367,7 +369,8 @@ module axi_adrv9001 #(
 
     .tx1_single_lane (tx1_single_lane),
     .tx1_sdr_ddr_n (tx1_sdr_ddr_n),
-    .tx1_symb_2_8_16b (tx1_symb_2_8_16b),
+    .tx1_symb_b1 (tx1_symb_b1),
+    .tx1_symb_b2 (tx1_symb_b2),
 
     .tx2_clk (dac_2_clk),
     .tx2_rst (dac_2_rst),
@@ -377,7 +380,8 @@ module axi_adrv9001 #(
 
     .tx2_single_lane (tx2_single_lane),
     .tx2_sdr_ddr_n (tx2_sdr_ddr_n),
-    .tx2_symb_2_8_16b (tx2_symb_2_8_16b)
+    .tx2_symb_b1 (tx2_symb_b1),
+    .tx2_symb_b2 (tx2_symb_b2)
   );
 
   // common processor control
@@ -426,7 +430,8 @@ module axi_adrv9001 #(
 
     .tx1_single_lane (tx1_single_lane),
     .tx1_sdr_ddr_n (tx1_sdr_ddr_n),
-    .tx1_symb_2_8_16b (tx1_symb_2_8_16b),
+    .tx1_symb_b1 (tx1_symb_b1),
+    .tx1_symb_b2 (tx1_symb_b2),
 
     .tx2_clk (dac_2_clk),
     .tx2_rst (dac_2_rst),
@@ -436,7 +441,8 @@ module axi_adrv9001 #(
 
     .tx2_single_lane (tx2_single_lane),
     .tx2_sdr_ddr_n (tx2_sdr_ddr_n),
-    .tx2_symb_2_8_16b (tx2_symb_2_8_16b),
+    .tx2_symb_b1 (tx2_symb_b1),
+    .tx2_symb_b2 (tx2_symb_b2),
 
     .dac_clk_ratio (dac_clk_ratio),
     //

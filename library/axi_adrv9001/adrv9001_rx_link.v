@@ -56,7 +56,9 @@ module adrv9001_rx_link #(
 
   // Config interface
   input         rx_sdr_ddr_n,
-  input         rx_single_lane
+  input         rx_single_lane,
+  input         rx_symb_b1,
+  input         rx_symb_b2
 );
 
   wire [7:0] data_0;

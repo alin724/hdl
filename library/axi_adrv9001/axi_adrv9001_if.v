@@ -119,6 +119,8 @@ module axi_adrv9001_if #(
 
   input             rx1_single_lane,
   input             rx1_sdr_ddr_n,
+  input             rx1_symb_b1,
+  input             rx1_symb_b2,
 
   output            rx2_clk,
   input             rx2_rst,
@@ -128,6 +130,8 @@ module axi_adrv9001_if #(
 
   input             rx2_single_lane,
   input             rx2_sdr_ddr_n,
+  input             rx2_symb_b1,
+  input             rx2_symb_b2,
 
   output            tx1_clk,
   input             tx1_rst,
@@ -255,7 +259,9 @@ module axi_adrv9001_if #(
     .rx_data_i (rx1_data_i),
     .rx_data_q (rx1_data_q),
     .rx_single_lane (rx1_single_lane),
-    .rx_sdr_ddr_n (rx1_sdr_ddr_n)
+    .rx_sdr_ddr_n (rx1_sdr_ddr_n),
+    .rx_symb_b1 (rx1_symb_b1),
+    .rx_symb_b2 (rx1_symb_b2)
   );
 
   adrv9001_rx
@@ -316,7 +322,9 @@ module axi_adrv9001_if #(
     .rx_data_i (rx2_data_i),
     .rx_data_q (rx2_data_q),
     .rx_single_lane (rx2_single_lane),
-    .rx_sdr_ddr_n (rx2_sdr_ddr_n)
+    .rx_sdr_ddr_n (rx2_sdr_ddr_n),
+    .rx_symb_b1 (rx2_symb_b1),
+    .rx_symb_b2 (rx2_symb_b2)
   );
 
   adrv9001_tx #(
